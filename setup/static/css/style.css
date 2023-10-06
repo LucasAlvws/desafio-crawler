@@ -58,7 +58,7 @@ a:hover{
     opacity: 0.5;
 }
 
-.col{
+.coluna{
     max-width: 25%;
     min-width: 25%;
     word-break: break-word;
@@ -102,4 +102,12 @@ a:hover{
     height: 25%;
     transition: 1s;
     text-align: center;
+}
+
+.ERROR{
+    color: red;
+}
+
+.FINISHED{
+    color: green;
 }

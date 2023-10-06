@@ -18,10 +18,10 @@
         {% for quote in quotes %}
         <li>
             <div class="row">
-                <div class="col quote-col border border-2 rounded">{{quote.Quotes}}</div>
-                <div class="col border border-2 rounded">{{quote.Author}}</div>
-                <div class="col border border-2 rounded">{{quote.Tags}}</div>
-                <div class="col border border-2 rounded">{{quote.Link}}</div>
+                <div class="col border border-2 rounded">{{quote.Quotes}}</div>
+                <div class="col border border-2 rounded coluna">{{quote.Author}}</div>
+                <div class="col border border-2 rounded coluna">{{quote.Tags}}</div>
+                <div class="col border border-2 rounded coluna">{{quote.Link}}</div>
             </div>
         </li>
         {% endfor %}

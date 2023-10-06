@@ -1,10 +1,12 @@
 from django.http import HttpResponse
 from django.views.generic import TemplateView
+from django.views.generic.list import ListView
 from .conections2site import all_quote_list
 import csv
 import json
 from django.urls import reverse
 from django.views import View
+from .models import Log
 
 
 class QuoteList(TemplateView):
@@ -39,3 +41,17 @@ class json_generate(View):
         redirect_url = reverse('quoteList')
         response['Location'] = redirect_url
         return response
+
+class LogList(ListView):
+    template_name = "quotes/logList.html"
+    model = Log
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.order_by('-id')
+        return queryset
+
+
+
+
+
+

@@ -1,0 +1,35 @@
+{% extends "partials/base.html" %}
+{% load tags %}
+{% load static %}
+{% block content %}
+    
+    <div class="container p-4">
+
+        <div class="d-flex">
+            <a href="{% url "csv_generate" %}" class="botao m-4 d-flex justify-content-center rounded"><div class="align-self-center">Generate log CSV</div></a>
+            <a href="{% url "home" %}" class="botao m-4 d-flex justify-content-center rounded "><div class="align-self-center">Home</div></a>
+        </div>
+        <i class="fa fa-search"><input class="rounded p-2 m-3 pesquisa" type="text" id="txtBusca" placeholder="Nome da integração..." /></i>
+        <ul id="ulItens" class="listQuotes mb-4">
+            {% for item in object_list %}
+        <li>
+            <div class="row rounded border">
+                <div class="col col-lg-2">
+                    {{item.time|dataf}}
+                </div>
+                <div class="col col-lg-3 {{item.type}}">
+                    {{item.type}}
+                </div>
+                <div class="col col-lg-2">
+                    {{item.location}}
+                </div>
+                <div class="col">
+                    {{item.description}}
+                </div>
+            </div>
+        </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+{% endblock %}
