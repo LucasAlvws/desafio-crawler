@@ -6,7 +6,7 @@ response=requests.get(url)
 doc=BeautifulSoup(response.text,'html.parser')
 div_tags=doc.find_all('div',class_='quote')'''
 
-def list_of_dict():
+def all_quote_list():
     lista_quotes = []
     for i in range(1,11):
         url=f'http://quotes.toscrape.com/page/{i}'

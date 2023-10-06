@@ -1,0 +1,17 @@
+{% extends "partials/base.html" %}
+{% load static %}
+{% block content %}
+<div class="home container align-self-center d-flex justify-content-center">
+    <div class="tab-home row">
+        <a href="{% url "quoteList" %}" class="col rounded shadow-lg m-4 col-home d-flex justify-content-center">
+            <h3 class="my-4">All Quotes CSV Generate</h3>
+        </a>
+        <a href="#" class="col rounded shadow-lg m-4 col-home d-flex justify-content-center">
+            <h3 class="my-4">Filter Quotes CSV Generate</h3>
+        </a>
+        <a href="#" class="col rounded shadow-lg m-4 col-home d-flex justify-content-center">
+            <h3 class="my-4">Logs</h3>
+        </a>
+    </div>
+</div>
+{% endblock %}
