@@ -2,8 +2,10 @@
 {% load static %}
 {% block content %}
 <div class="quoteList container align-self-center">
-    <div class="botao m-4 d-flex justify-content-center rounded">
-        <a href="{% url "csv_generate" %}">Generate no filter CSV</a>
+    <div class="d-flex">
+        <a href="{% url "csv_generate" %}" class="botao m-4 d-flex justify-content-center rounded"><div class="align-self-center">Generate no filter CSV</div></a>
+        <a href="{% url "json_generate" %}" class="botao m-4 d-flex justify-content-center rounded "><div class="align-self-center">Generate no filter JSON</div></a>
+        <a href="{% url "home" %}" class="botao m-4 d-flex justify-content-center rounded "><div class="align-self-center">Home</div></a>
     </div>
     <i class="fa fa-search"><input class="rounded p-2 m-3 pesquisa" type="text" id="txtBusca" placeholder="Nome da integração..." /></i>
     <ul id="ulItens" class="listQuotes mb-4">

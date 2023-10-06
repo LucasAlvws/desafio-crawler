@@ -2,16 +2,14 @@
 {% load static %}
 {% block content %}
 <div class="home container align-self-center d-flex justify-content-center">
-    <div class="tab-home row">
-        <a href="{% url "quoteList" %}" class="col rounded shadow-lg m-4 col-home d-flex justify-content-center">
-            <h3 class="my-4">All Quotes CSV Generate</h3>
-        </a>
-        <a href="#" class="col rounded shadow-lg m-4 col-home d-flex justify-content-center">
-            <h3 class="my-4">Filter Quotes CSV Generate</h3>
-        </a>
-        <a href="#" class="col rounded shadow-lg m-4 col-home d-flex justify-content-center">
-            <h3 class="my-4">Logs</h3>
-        </a>
-    </div>
+    <a href="{% url "quoteList" %}" class="botao-home m-4 d-flex justify-content-center rounded ">
+        <div class="align-self-center">Quote List Generator</div>
+    </a>
+    <a href="#" class="botao-home m-4 d-flex justify-content-center rounded ">
+        <div class="align-self-center">Quote List Filter Generator</div>
+    </a>
+    <a href="#" class="botao-home m-4 d-flex justify-content-center rounded ">
+        <div class="align-self-center">Logs</div>
+    </a>
 </div>
 {% endblock %}

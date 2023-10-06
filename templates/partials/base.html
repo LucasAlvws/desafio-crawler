@@ -20,7 +20,6 @@
 <body>
 <header class="cabecalho d-flex justify-content-between">
     <a class="mx-3 d-flex align-items-center" href="{% url "home" %}"><h1>QUOTES</h1></a>
-    <a class="mx-3 d-flex align-items-center rounded border border-2 botao-home m-2 px-2" href="{% url "home" %}"><h3>Home</h3></a>
 </header>
 <div class="base-body">
     {% for message in messages %}
