@@ -111,6 +111,10 @@ a:hover{
     font-size: x-large;
 }
 
+.tag-row{
+    color: black;
+}
+
 .ERROR{
     color: red;
 }
@@ -121,4 +125,8 @@ a:hover{
 
 .SUCCESS{
     color: green;
+}
+
+.GENERATED{
+    color: orange;
 }

@@ -16,18 +16,41 @@ class QuoteList(TemplateView):
         context = super().get_context_data(**kwargs)
         quotes = all_quote_list("quoteListMenu")
         context['quotes'] = quotes
+        return context
+
+
+class TagList(TemplateView):
+    template_name = "quotes/tagList.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        quotes = all_quote_list("tagListMenu")
         tags_list = []
         for i in quotes:
             splitTags = i['Tags'].split(",")
             for tag in splitTags:
                 if tag not in tags_list:
-                    tags_list.append(tag)
+                    tags_list.append(str(tag))
         context['tags'] = tags_list
         return context
 
 
+class TagView(TemplateView):
+    template_name = "quotes/quoteList.html"
+    def get_context_data(self, **kwargs):
+        try:
+            tag = self.request.GET.get('tag', None)
+        except:
+            tag = ""
+        context = super().get_context_data(**kwargs)
+        quotes = tag_quote_list(f"tagView:{tag}", tag)
+        context['quotes'] = quotes
+        context['tag'] = tag
+        return context
+
+
+
 class Home(TemplateView):
-    template_name = "quotes/home.html"
+    template_name = "quotes/home.html"   
     
 
 class Log_generate(View):
@@ -39,6 +62,7 @@ class Log_generate(View):
         logs = Log.objects.all()
         for log in logs:
             writer.writerow([log.time, log.type, log.location, log.description]) 
+        Log.objects.create(type=f"GENERATED", location = "Log_generate", description=f"Logs CSV generated")
         return response
 
 class csv_generate(View):
@@ -47,22 +71,30 @@ class csv_generate(View):
         response['Content-Disposition'] = f'attachment; filename=quotes.csv'
         writer = csv.writer(response, delimiter =';',quotechar =';')
         writer.writerow(['Quote', 'Author', 'Tags', 'Link'])
-        quotes = all_quote_list("downloadCSVQuoteList")
+        if self.request.GET.get('tag', None) is None:
+            quotes = all_quote_list("downloadCSVQuoteList")
+        else:
+            tag = self.request.GET.get('tag', None)
+            quotes = tag_quote_list(f"downloadCSVTag:{tag}", tag)
         for q in quotes:
             writer.writerow([q["Quotes"], q["Author"], q["Tags"], q["Link"]]) 
+        Log.objects.create(type=f"GENERATED", location = "csv_generate", description=f"CSV Quotes generated")
         return response
-    def post(self, request, *args, **kwargs):
-        pass
 
 class json_generate(View):
     def get(self, request, *args, **kwargs):
-        quotes_list = all_quote_list("downloadJSONQuoteList")
+        if self.request.GET.get('tag', None) is None:
+            quotes_list = all_quote_list("downloadJSONQuoteList")
+        else:
+            tag = self.request.GET.get('tag', None)
+            quotes_list = tag_quote_list(f"downloadJSONTag:{tag}", tag)
         quotes_json = json.dumps(quotes_list, indent=4)
         quotes_json = quotes_json.replace("[", "").replace("]", "")
         response = HttpResponse(quotes_json, content_type='application/json')
         response['Content-Disposition'] = 'attachment; filename=quotes.json'
         redirect_url = reverse('quoteList')
         response['Location'] = redirect_url
+        Log.objects.create(type=f"GENERATED", location = "json_generate", description=f"JSON Quotes generated")
         return response
 
 class LogList(ListView):

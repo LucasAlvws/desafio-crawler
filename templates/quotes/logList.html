@@ -9,14 +9,14 @@
             <a href="{% url "log_generate" %}" class="botao m-4 d-flex justify-content-center rounded"><div class="align-self-center">Generate all log CSV</div></a>
             <a href="{% url "home" %}" class="botao m-4 d-flex justify-content-center rounded "><div class="align-self-center">Home</div></a>
         </div>
-        <i class="fa fa-search"><input class="rounded p-2 m-3 pesquisa" type="text" id="txtBusca" placeholder="Nome da integração..." /></i>
+        <i class="fa fa-search"><input class="rounded p-2 m-3 pesquisa" type="text" id="txtBusca" placeholder="Search..." /></i>
         <div class="row">
             <div class="col">
-                <h2>TOP 100 logs:</h2>
+                <h2>TOP 2000 logs:</h2>
             </div>
         </div>
         <ul id="ulItens" class="listQuotes mb-4">
-            {% for item in object_list|slice:":100" %}
+            {% for item in object_list|slice:":2000" %}
         <li>
             <div class="row rounded border">
                 <div class="col col-lg-2">
