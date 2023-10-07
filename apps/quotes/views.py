@@ -1,4 +1,5 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from .conections2site import all_quote_list, tag_quote_list
@@ -6,7 +7,7 @@ import csv
 import json
 from django.urls import reverse
 from django.views import View
-from .models import Log
+from .models import Log,Quote
 
 
 class QuoteList(TemplateView):
@@ -52,6 +53,22 @@ class TagView(TemplateView):
 class Home(TemplateView):
     template_name = "quotes/home.html"   
     
+class UpdateDataBase(View):
+    def get(self, request, *args, **kwargs):
+        db_quotes_object = Quote.objects.all()
+        site_quotes = all_quote_list("UpdateDataBase")
+        db_quotes_text = []
+        if len(db_quotes_object) < 1:
+            for sq in site_quotes:
+                Quote.objects.create(quote=sq['Quotes'],author=sq['Author'],tags=sq['Tags'],link=sq['Link'])
+        else:
+            for q in db_quotes_object:
+                db_quotes_text.append(str(q.quote))
+            for sq in site_quotes:
+                if sq['Quotes'] in db_quotes_text:
+                    Quote.objects.create(quote=sq['Quotes'],author=sq['Author'],tags=sq['Tags'],link=sq['Link'])
+        Log.objects.create(type=f"UPDATED", location = "UpdateDataBase", description=f"Database updated")
+        return HttpResponseRedirect(reverse("home"))
 
 class Log_generate(View):
     def get(self, request, *args, **kwargs):

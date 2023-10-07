@@ -1,15 +1,31 @@
 {% extends "partials/base.html" %}
 {% load static %}
 {% block content %}
+<div class="home container align-self-center d-flex flex-column">
+    <h2 class="mt-4">Dados ao vivo</h2>
+    <div class=" d-flex justify-content-center">
+        <a href="{% url "quoteList" %}" class="botao-home m-4 d-flex justify-content-center rounded ">
+            <div class="align-self-center">Quote List Generator</div>
+        </a>
+        <a href="{% url "tagList" %}" class="botao-home m-4 d-flex justify-content-center rounded ">
+            <div class="align-self-center">Tag List Generator</div>
+        </a>
+        
+    </div>
+    <h2 class="mt-5">Dados do banco</h2>
+    <div class=" d-flex justify-content-center">
+        <a href="{% url "updateDataBase" %}" class="botao-home m-4 d-flex justify-content-center rounded ">
+            <div class="align-self-center">Atualizar banco de dados</div>
+        </a>
+    </div>
+    <h2 class="mt-5">Logs</h2>
+    <div class=" d-flex justify-content-center">
+        <a href="{% url "logs" %}" class="botao-home m-4 d-flex justify-content-center rounded ">
+            <div class="align-self-center">Logs</div>
+        </a>
+    </div>
+</div>
 <div class="home container align-self-center d-flex justify-content-center">
-    <a href="{% url "quoteList" %}" class="botao-home m-4 d-flex justify-content-center rounded ">
-        <div class="align-self-center">Quote List Generator</div>
-    </a>
-    <a href="{% url "tagList" %}" class="botao-home m-4 d-flex justify-content-center rounded ">
-        <div class="align-self-center">Tag List Generator</div>
-    </a>
-    <a href="{% url "logs" %}" class="botao-home m-4 d-flex justify-content-center rounded ">
-        <div class="align-self-center">Logs</div>
-    </a>
+    
 </div>
 {% endblock %}

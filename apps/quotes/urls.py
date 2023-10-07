@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import QuoteList,csv_generate, Home, json_generate,LogList,Log_generate, TagList,TagView
+from .views import QuoteList,csv_generate, Home, json_generate,LogList,Log_generate, TagList,TagView,UpdateDataBase
 
 urlpatterns = [
     path("quoteList/", QuoteList.as_view(), name="quoteList"),
@@ -11,6 +11,8 @@ urlpatterns = [
     path('log_generate/', Log_generate.as_view(), name='log_generate'),
     path('tagList/', TagList.as_view(), name='tagList'),
     path('tag/', TagView.as_view(), name='tagView'),
+    path('updateDataBase/', UpdateDataBase.as_view(), name='updateDataBase'),
+    
     
 
     

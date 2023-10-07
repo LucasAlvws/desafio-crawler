@@ -7,3 +7,9 @@ class Log(models.Model):
     type = models.CharField(default="", max_length=100, blank=False, null=False)
     location = models.CharField(default="",max_length=100, blank=False, null=False)
     description = models.TextField(blank=False, null=False)
+
+class Quote(models.Model):
+    quote = models.TextField(blank=False, null=False)
+    author = models.CharField(max_length=100, blank=False, null=False)
+    tags = models.CharField(default="", max_length=100, blank=False, null=False)
+    link = models.CharField(default="", max_length=100, blank=False, null=False)
