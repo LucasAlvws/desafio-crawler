@@ -1,8 +1,13 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from .views import *
-
+from .serializer import *
+from rest_framework import routers
+router = routers.DefaultRouter()
+router.register('logAPI', LogListAPI, basename='logAPI')
+router.register('quoteAPI', QuoteListAPI, basename='quoteAPI')
 urlpatterns = [
+    path('api/', include(router.urls)),
     path("", Home.as_view(), name="home"),
     path('logs/', LogList.as_view(), name="logs"),
     path('log_generate/', Log_generate.as_view(), name='log_generate'),
@@ -17,7 +22,5 @@ urlpatterns = [
     path('tagListDB/', TagListDB.as_view(), name='tagListDB'),
     path('json_generate_db/', json_generate_db.as_view(), name='json_generate_db'),
     path('csv_generate_db/', csv_generate_db.as_view(), name='csv_generate_db'),
-    path('pandas/', Pandas.as_view(), name='pandas'),
-
-    
+    path('pandas/', Pandas.as_view(), name='pandas'),   
 ]

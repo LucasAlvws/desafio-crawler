@@ -10,6 +10,8 @@ import pandas as pd
 import csv
 import json
 from .models import Log,Quote
+from .serializer import LogSerializer, QuoteSerializer
+from rest_framework import viewsets
 from .conections2site import all_quote_list, tag_quote_list
 
 
@@ -276,3 +278,12 @@ class Pandas(TemplateView):
         except Exception as e:
             Log.objects.create(type=f"Pandas", location = "QuoteListDB", description=f"Error in get method quotes.view.Pandas: {e}")           
 
+#--------- rest
+
+class LogListAPI(viewsets.ReadOnlyModelViewSet):
+	queryset = Log.objects.all()
+	serializer_class = LogSerializer
+
+class QuoteListAPI(viewsets.ReadOnlyModelViewSet):
+	queryset = Quote.objects.all()
+	serializer_class = QuoteSerializer
