@@ -107,6 +107,10 @@ a:hover{
     text-align: center;
 }
 
+td {
+    border: solid;
+}
+
 .botao-home div{
     font-size: x-large;
 }

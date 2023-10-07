@@ -1,15 +1,17 @@
 from django.contrib import messages
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound  
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound, JsonResponse
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from django.core.serializers import serialize
 from django.urls import reverse
 from django.views import View
 from django.shortcuts import render
-from .models import Log,Quote
-from .conections2site import all_quote_list, tag_quote_list
+import pandas as pd
 import csv
 import json
+from .models import Log,Quote
+from .conections2site import all_quote_list, tag_quote_list
+
 
 
 
@@ -50,7 +52,9 @@ class Log_generate(View):
             return response
         except Exception as e:
             Log.objects.create(type=f"ERROR", location = "Log_generate", description=f"Error in get method quotes.view.Log_generate: {e}")
-
+            messages.error(request, 'ERRO to generate log')
+            return HttpResponseRedirect(reverse("home"))
+        
 
 #+++++++AO VIVO+++++++
 class QuoteList(TemplateView):
@@ -123,6 +127,8 @@ class csv_generate(View):
             return response
         except Exception as e:
             Log.objects.create(type=f"ERROR", location = "csv_generate", description=f"Error in get method quotes.view.csv_generate: {e}")
+            messages.error(request, 'ERRO to generate file')
+            return HttpResponseRedirect(reverse("home"))
         
 class json_generate(View):
     def get(self, request, *args, **kwargs):
@@ -142,7 +148,9 @@ class json_generate(View):
             return response
         except Exception as e:
             Log.objects.create(type=f"ERROR", location = "json_generate", description=f"Error in get method quotes.view.json_generate: {e}")
-
+            messages.error(request, 'ERRO to generate file')
+            return HttpResponseRedirect(reverse("home"))
+        
 
 #+++++++BANCO DE DADOS+++++++
 class QuoteListDB(TemplateView):
@@ -215,7 +223,9 @@ class csv_generate_db(View):
             return response
         except Exception as e:
             Log.objects.create(type=f"ERROR", location = "csv_generateDB", description=f"Error in get method quotes.view.csv_generateDB: {e}")
-
+            messages.error(request, 'ERRO to generate file')
+            return HttpResponseRedirect(reverse("home"))
+        
 class json_generate_db(View):
     def get(self, request, *args, **kwargs):
         try:
@@ -225,16 +235,16 @@ class json_generate_db(View):
                 tag = self.request.GET.get('tag', None)
                 quotes = Quote.objects.filter(tags__contains=tag)
             serialized_quotes = serialize('json', quotes)
-            file_name = f"quotes_db.json"
-            with open(file_name, 'w', encoding='utf-8') as file:
-                file.write(serialized_quotes)
-            with open(file_name, 'r', encoding='utf-8') as file:
-                response = HttpResponse(file, content_type='application/json')
-                response['Content-Disposition'] = f'attachment; filename="{file_name}"'
-                Log.objects.create(type=f"GENERATED", location = "json_generate", description=f"JSON Quotes DB generated")
-                return response
+            json_data = json.loads(serialized_quotes)
+            json_string = json.dumps(json_data, indent=4)
+            response = HttpResponse(json_string, content_type='application/json')
+            response['Content-Disposition'] = f'attachment; filename="quotes.json"'
+            Log.objects.create(type=f"GENERATED", location = "json_generate_db", description=f"JSON Quotes DB generated")
+            return response  
         except Exception as e:
             Log.objects.create(type=f"ERROR", location = "json_generate_db", description=f"Error in get method quotes.view.json_generate_db: {e}")
+            messages.error(request, 'ERRO to generate file')
+            return HttpResponseRedirect(reverse("home"))
 
 class UpdateDataBase(View):
     def get(self, request, *args, **kwargs):
@@ -248,6 +258,21 @@ class UpdateDataBase(View):
             return HttpResponseRedirect(reverse("home"))
         except Exception as e:
             Log.objects.create(type=f"ERROR", location = "UpdateDataBase", description=f"Error in get method quotes.view.UpdateDataBase: {e}")
+            messages.error(request, 'ERRO Database Updated')
 
-            
+class Pandas(TemplateView):
+    template_name = "quotes/pandas.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        quotes = Quote.objects.all().values()
+        data = pd.DataFrame(quotes)
+        context['data'] = data.to_html()
+        return context
+
+    def get(self, request, *args, **kwargs):
+        try:
+            return super().get(request, *args, **kwargs)
+        except Exception as e:
+            Log.objects.create(type=f"Pandas", location = "QuoteListDB", description=f"Error in get method quotes.view.Pandas: {e}")           
 

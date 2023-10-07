@@ -17,6 +17,7 @@ urlpatterns = [
     path('tagListDB/', TagListDB.as_view(), name='tagListDB'),
     path('json_generate_db/', json_generate_db.as_view(), name='json_generate_db'),
     path('csv_generate_db/', csv_generate_db.as_view(), name='csv_generate_db'),
+    path('pandas/', Pandas.as_view(), name='pandas'),
 
     
 ]
