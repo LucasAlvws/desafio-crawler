@@ -1,0 +1,37 @@
+{% extends "partials/base.html" %}
+{% load static %}
+{% block content %}
+<div class="quoteList container align-self-center">
+    <div class="d-flex">
+        {% if tag is None %}
+        <a href="{% url "csv_generate_db" %}" class="botao m-4 d-flex justify-content-center rounded"><div class="align-self-center">Generate CSV</div></a>
+        <a href="{% url "json_generate_db" %}" class="botao m-4 d-flex justify-content-center rounded "><div class="align-self-center">Generate JSON</div></a>
+        {% else %}
+        <a href="{% url "csv_generate_db" %}?tag={{tag}}" class="botao m-4 d-flex justify-content-center rounded"><div class="align-self-center">Generate CSV</div></a>
+        <a href="{% url "json_generate_db" %}?tag={{tag}}" class="botao m-4 d-flex justify-content-center rounded "><div class="align-self-center">Generate JSON</div></a>
+        {% endif %}
+        <a href="{% url "home" %}" class="botao m-4 d-flex justify-content-center rounded "><div class="align-self-center">Home</div></a>
+    </div>
+    <i class="fa fa-search"><input class="rounded p-2 m-3 pesquisa" type="text" id="txtBusca" placeholder="Nome da integração..." /></i>
+    <ul id="ulItens" class="listQuotes mb-4">
+        <div class="row border border-2 rounded head-grid">
+            <div class="col">Quote</div>
+            <div class="col">Author</div>
+            <div class="col">Tags</div>
+            <div class="col">Link</div>
+        </div>
+        {% for quote in quotes %}
+        <li>
+            <div class="row">
+                <div class="col border border-2 rounded">{{quote.quote}}</div>
+                <div class="col border border-2 rounded coluna">{{quote.author}}</div>
+                <div class="col border border-2 rounded coluna">{{quote.tags}}</div>
+                <div class="col border border-2 rounded coluna">{{quote.link}}</div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    
+</div>
+
+{% endblock %}

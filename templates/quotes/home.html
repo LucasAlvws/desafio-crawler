@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <div class="home container align-self-center d-flex flex-column">
-    <h2 class="mt-4">Dados ao vivo</h2>
+    <h2 class="mt-4">Dados ao vivo (lento)</h2>
     <div class=" d-flex justify-content-center">
         <a href="{% url "quoteList" %}" class="botao-home m-4 d-flex justify-content-center rounded ">
             <div class="align-self-center">Quote List Generator</div>
@@ -12,10 +12,16 @@
         </a>
         
     </div>
-    <h2 class="mt-5">Dados do banco</h2>
+    <h2 class="mt-5">Dados do banco (rápido)</h2>
     <div class=" d-flex justify-content-center">
         <a href="{% url "updateDataBase" %}" class="botao-home m-4 d-flex justify-content-center rounded ">
             <div class="align-self-center">Atualizar banco de dados</div>
+        </a>
+        <a href="{% url "quoteListDB" %}" class="botao-home m-4 d-flex justify-content-center rounded ">
+            <div class="align-self-center">Quote List Generator</div>
+        </a>
+        <a href="{% url "tagListDB" %}" class="botao-home m-4 d-flex justify-content-center rounded ">
+            <div class="align-self-center">Tag List Generator</div>
         </a>
     </div>
     <h2 class="mt-5">Logs</h2>
