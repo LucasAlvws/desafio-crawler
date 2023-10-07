@@ -100,9 +100,9 @@ def tag_quote_list(local, tag_filter):
             url=f'http://quotes.toscrape.com{link}'
             try:
                 response=requests.get(url)
-            except:
+            except Exception as e:
                 #log erro
-                Log.objects.create(type=f"ERROR", location = local, description=f"Error when connecting on {url}")
+                Log.objects.create(type=f"ERROR", location = local, description=f"Error when connecting on {url}: {e}")
             #log response
             Log.objects.create(type=f"RESPONSE", location = local, description=f"{response} when connecting on {url}")
             html=BeautifulSoup(response.text,'html.parser')
@@ -113,9 +113,9 @@ def tag_quote_list(local, tag_filter):
                 for tag in div_tags:
                     quote = tag.find('span', class_='text').text
                     quotes.append(quote)
-            except:
+            except Exception as e:
                 #log erro
-                Log.objects.create(type=f"ERROR", location = local, description=f"Error to find quote text on {url}")
+                Log.objects.create(type=f"ERROR", location = local, description=f"Error to find quote text on {url}: {e}")
                 pass
             authors = []
             try:
@@ -123,26 +123,26 @@ def tag_quote_list(local, tag_filter):
                     span_tag = tag.find('span', class_=None)
                     author = span_tag.find('small', class_='author').text
                     authors.append(author)
-            except:
+            except Exception as e:
                 #log erro
-                Log.objects.create(type=f"ERROR", location = local, description=f"Error to find author on {url}")
+                Log.objects.create(type=f"ERROR", location = local, description=f"Error to find author on {url}: {e}")
             name_tags = []
             try:
                 for tag in div_tags:
                     name_tag = tag.find('div', class_='tags').meta['content']
                     name_tags.append(name_tag)
-            except:
+            except Exception as e:
                 #log erro
-                Log.objects.create(type=f"ERROR", location = local, description=f"Error to find tags on {url}")
+                Log.objects.create(type=f"ERROR", location = local, description=f"Error to find tags on {url}: {e}")
             author_links = []
             try:
                 for tag in div_tags:
                     span_tag = tag.find('span', class_=None)
                     author_link = 'http://quotes.toscrape.com' + span_tag.find('a')['href']
                     author_links.append(author_link)
-            except:
+            except Exception as e:
                 #log erro
-                Log.objects.create(type=f"ERROR", location = local, description=f"Error to find author_link on {url}")
+                Log.objects.create(type=f"ERROR", location = local, description=f"Error to find author_link on {url}: {e}")
             #log success
             Log.objects.create(type=f"FINISHED", location = local, description=f"Quotes returned from {url}")
             try:
@@ -150,9 +150,9 @@ def tag_quote_list(local, tag_filter):
                     'Author': authors[i],
                     'Tags': name_tags[i],
                     'Link': author_links[i]} for i in range(len(quotes)))
-            except:
+            except Exception as e:
                 #log erro
-                Log.objects.create(type=f"ERROR", location = local, description=f"Error to return the quote list from {url}")
+                Log.objects.create(type=f"ERROR", location = local, description=f"Error to return the quote list from {url}: {e}")
             
             next = []
             try:
@@ -161,9 +161,9 @@ def tag_quote_list(local, tag_filter):
                     next.append(quote['href'])
                 #log success
                 Log.objects.create(type=f"SUCCESS", location = local, description=f"Success to find next_page on {url}")
-            except:
+            except Exception as e:
                 #log erro
-                Log.objects.create(type=f"ERROR", location = local, description=f"Error to find next_page on {url}")
+                Log.objects.create(type=f"ERROR", location = local, description=f"Error to find next_page on {url}: {e}")
             if next == []:
                 next_page = False
             else:
@@ -171,6 +171,6 @@ def tag_quote_list(local, tag_filter):
         #log success
         Log.objects.create(type=f"FINISHED", location = local, description=f"Quotes returned")
         return lista_quotes
-    except:
-        Log.objects.create(type=f"ERROR", location = local, description=f"General error")
+    except Exception as e:
+        Log.objects.create(type=f"ERROR", location = local, description=f"General error: {e}")
 
