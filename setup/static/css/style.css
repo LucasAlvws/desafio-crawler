@@ -105,6 +105,7 @@ a:hover{
     height: 50%;
     transition: 1s;
     text-align: center;
+    padding: 10px;
 }
 
 td {
