@@ -115,7 +115,7 @@ class csv_generate(View):
     def get(self, request, *args, **kwargs):
         try:
             response = HttpResponse(content_type='text/csv; charset=utf-8')
-            response['Content-Disposition'] = f'attachment; filename=quotes.csv'
+            response['Content-Disposition'] = f'attachment; filename=quotesLive.csv'
             writer = csv.writer(response, delimiter =';',quotechar =';')
             writer.writerow(['Quote', 'Author', 'Tags', 'Link'])
             if self.request.GET.get('tag', None) is None:
@@ -143,7 +143,7 @@ class json_generate(View):
             quotes_json = json.dumps(quotes_list, indent=4)
             quotes_json = quotes_json
             response = HttpResponse(quotes_json, content_type='application/json')
-            response['Content-Disposition'] = 'attachment; filename=quotes.json'
+            response['Content-Disposition'] = 'attachment; filename=quotesLive.json'
             redirect_url = reverse('quoteList')
             response['Location'] = redirect_url
             Log.objects.create(type=f"GENERATED", location = "json_generate", description=f"JSON Quotes generated")
@@ -211,7 +211,7 @@ class csv_generate_db(View):
     def get(self, request, *args, **kwargs):
         try:
             response = HttpResponse(content_type='text/csv; charset=utf-8')
-            response['Content-Disposition'] = f'attachment; filename=quotes.csv'
+            response['Content-Disposition'] = f'attachment; filename=quotesDB.csv'
             writer = csv.writer(response, delimiter =';',quotechar =';')
             writer.writerow(['Quote', 'Author', 'Tags', 'Link'])
             if self.request.GET.get('tag', None) is None:
@@ -240,7 +240,7 @@ class json_generate_db(View):
             json_data = json.loads(serialized_quotes)
             json_string = json.dumps(json_data, indent=4)
             response = HttpResponse(json_string, content_type='application/json')
-            response['Content-Disposition'] = f'attachment; filename="quotes.json"'
+            response['Content-Disposition'] = f'attachment; filename="quotesDB.json"'
             Log.objects.create(type=f"GENERATED", location = "json_generate_db", description=f"JSON Quotes DB generated")
             return response  
         except Exception as e:

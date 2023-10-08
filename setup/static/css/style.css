@@ -120,6 +120,9 @@ td {
     color: black;
 }
 
+.tag-row:hover{
+    color: #0fd1bf;
+}
 .ERROR{
     color: red;
 }
