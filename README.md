@@ -1,12 +1,12 @@
 # Quotes to Scrape:
 O site escolhido para fazer a aplicação foi o [quotes.toscrape](https://quotes.toscrape.com/). Para a aplicação foi utilizado o Django Framework, o qual eu usei para fazer uma aplicação web que busca os dados do site escolhido e depois trabalha com eles, tanto o armazenamento quanto a visualização dos dados.
-Na home da aplicação tem várias opções que são divididas entre "Dados ao vivo" e "Dados do banco". As opções de dados ao vivo buscam no [quotes.toscrape](https://quotes.toscrape.com/) os dados todo momento que são acessadas, já as opções de dados do banco usam as informações armazenadas na propria aplicação, esses dados podem ser atualizados na opção "Update Database".
-Tudo que acontece por trás da aplicação gera um log no banco de dados e isso pode ser acessado nas opções de "Logs e Documentação da API". Nessa sessão também pode ser acessado as documentações da api.
+Na home da aplicação tem várias opções que são divididas entre "Dados ao vivo" e "Dados do banco". As opções de dados ao vivo buscam no [quotes.toscrape](https://quotes.toscrape.com/) os dados todo momento que são acessadas e isso torna todas tarefas mais lentas, já as opções de dados do banco usam as informações armazenadas na propria aplicação, esses dados podem ser atualizados na opção "Update Database".
+Tudo que acontece por trás da aplicação gera um log no banco de dados e isso pode ser acessado nas opções de "Logs e Documentação da API". Nessa sessão também pode ser acessado as documentações da api gerado pela lib Swagger.
 A api foi feita com o Rest Framework e ela retorna tanto os logs quantos os dados dos quotes.
 A visualização dos dados podem ser feitas pelo propio site por templates criados a mão, templates do Pandas e também pela api Rest.
 Além de visualizar o usuário consegue gerar arquivos csv e json, tanto dos quotes quanto dos logs da aplicação.
 A documentação dos models pode ser encontrada na pasta root/documentacao/models-documentation.json e junto a pasta root/documentacao tem os screenshots dos dados retirados do site e também exemplos de arquivos gerados pela aplicação.
-
+Para rodar a aplicação pode ser utilizado o Python 3.11.5 e o "requirements.txt" que está no root da aplicação. Há também a dockerfile para buildar a imagem e rodar a aplicação.
 
 
 # beeMôn:
