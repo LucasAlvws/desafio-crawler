@@ -14,12 +14,12 @@ Para rodar a aplicação pode ser utilizado o Python 3.11.5 e o "requirements.tx
 - Após clonar o repositório mude para o branch master.
 - - git checkout master
 - No terminal aberto na pasta root do projeto escreva: 
-- - python -m venv ./venv
+- - python -m venv ./venv ou python3 -m venv ./venv
 - Ative o a venv
-- - windows: .\venv\Scripts\activate
-- - linux: Source \venv\bin\activate
+- - windows: venv\Scripts\activate
+- - linux: source venv/bin/activate
 - Instale os requirements:
-- - pip install -r .\requirements.txt
+- - pip install -r requirements.txt
 - Crie o banco de dados local sqlite
 - - python manage.py migrate
 
