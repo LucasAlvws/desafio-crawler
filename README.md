@@ -10,7 +10,7 @@ Para rodar a aplicação pode ser utilizado o Python 3.11.5 e o "requirements.tx
 
 # Passo-a-Passo:
 
-#Preparo
+# Preparo
 - Após clonar o repositório abra o terminal do pc na pasta root do projeto.
 - No terminal escreva: 
 - - python -m venv ./venv
@@ -27,30 +27,30 @@ Para rodar a aplicação pode ser utilizado o Python 3.11.5 e o "requirements.tx
 - - python.exe manage.py runserver
 - Abra o navegador no endereço: http://localhost:8000/
 
-#Menus
-##Dados ao vivo (modo mais lento, pois busca os dados diretamente do [quotes.toscrape](https://quotes.toscrape.com/))
-###Quote List Generator (mostra todas as quotes disponíveis no site)
+# Menus
+## Dados ao vivo (modo mais lento, pois busca os dados diretamente do [quotes.toscrape](https://quotes.toscrape.com/))
+### Quote List Generator (mostra todas as quotes disponíveis no site)
 - - Botão: Generate CSV (gera um csv com todas as quotes)
 - - Botão: Generate JSON (gera um json com todas as quotes)
-###Tag List Generator (mostra todas as tags/filtros de quotes disponíveis no site)
+### Tag List Generator (mostra todas as tags/filtros de quotes disponíveis no site)
 - - Cada tag/filtro te leva para uma lista de quotes que tenham sua tag/filtro. Onde você pode baixar o csv e json das masmos.
 
-##Dados do banco (modo mais rapido por usar dados locais do banco de dados, porém antes de usa-lo você deve usar o primeiro botão 'Update Database' e aguradar o programa buscar todas as quotes do [quotes.toscrape](https://quotes.toscrape.com/). )
-###Update Database
+## Dados do banco (modo mais rapido por usar dados locais do banco de dados, porém antes de usa-lo você deve usar o primeiro botão 'Update Database' e aguradar o programa buscar todas as quotes do [quotes.toscrape](https://quotes.toscrape.com/). )
+### Update Database
 - - Atualiza o banco de dados com as informações do do [quotes.toscrape](https://quotes.toscrape.com/).
-###Quote List Generator (mostra todas as quotes disponíveis no banco de dados)
+### Quote List Generator (mostra todas as quotes disponíveis no banco de dados)
 - - Botão: Generate CSV (gera um csv com todas as quotes)
 - - Botão: Generate JSON (gera um json com todas as quotes)
-###Tag List Generator (mostra todas as tags/filtros de quotes disponíveis no banco de dados)
+### Tag List Generator (mostra todas as tags/filtros de quotes disponíveis no banco de dados)
 - - Cada tag/filtro te leva para uma lista de quotes que tenham sua tag/filtro. Onde você pode baixar o csv e json das masmos.
-###Pandas View (mostra a visualização das quotes do banco de dados por meio do Pandas.)
-###Rest API (redireciona ao endereço da API que pode ser usada para ler os dados por outros programas.)
+### Pandas View (mostra a visualização das quotes do banco de dados por meio do Pandas.)
+### Rest API (redireciona ao endereço da API que pode ser usada para ler os dados por outros programas.)
 
-##Logs e Documentação da API
-###Logs (mostra os ultimos 2000 logs de todos processos do site.)
+## Logs e Documentação da API
+### Logs (mostra os ultimos 2000 logs de todos processos do site.)
 - - botão: Generate all log CSV (gera um csv com todos os logs do site)
-###Documentação Swagger (redireciona ao endereço da documentação gerada pelo Swagger da nossa API)
-###Documentação Redoc (redireciona ao endereço da documentação gerada pelo Redoc da nossa API)
+### Documentação Swagger (redireciona ao endereço da documentação gerada pelo Swagger da nossa API)
+### Documentação Redoc (redireciona ao endereço da documentação gerada pelo Redoc da nossa API)
 
 # beeMôn:
 
