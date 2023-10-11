@@ -11,8 +11,9 @@ Para rodar a aplicação pode ser utilizado o Python 3.11.5 e o "requirements.tx
 # Passo-a-Passo:
 
 ## Preparo
-- Após clonar o repositório abra o terminal do pc na pasta root do projeto.
-- No terminal escreva: 
+- Após clonar o repositório mude para o branch master.
+- - git checkout master
+- No terminal aberto na pasta root do projeto escreva: 
 - - python -m venv ./venv
 - Ative o a venv
 - - windows: .\venv\Scripts\activate
