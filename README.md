@@ -29,7 +29,8 @@ Para rodar a aplicação pode ser utilizado o Python 3.11.5 e o "requirements.tx
 
 # Menus
 ## Dados ao vivo 
-(modo mais lento, pois busca os dados diretamente do [quotes.toscrape](https://quotes.toscrape.com/))
+Modo mais lento, pois busca os dados diretamente do [quotes.toscrape](https://quotes.toscrape.com/).
+Campos:
 - Quote List Generator (mostra todas as quotes disponíveis no site)
 - - Botão: Generate CSV (gera um csv com todas as quotes)
 - - Botão: Generate JSON (gera um json com todas as quotes)
@@ -37,7 +38,8 @@ Para rodar a aplicação pode ser utilizado o Python 3.11.5 e o "requirements.tx
 - - Cada tag/filtro te leva para uma lista de quotes que tenham sua tag/filtro. Onde você pode baixar o csv e json das masmos.
 
 ## Dados do banco 
-(modo mais rapido por usar dados locais do banco de dados, porém antes de usa-lo você deve usar o primeiro botão 'Update Database' e aguradar o programa buscar todas as quotes do [quotes.toscrape](https://quotes.toscrape.com/). )
+Modo mais rapido por usar dados locais do banco de dados, porém antes de usa-lo você deve usar o primeiro botão 'Update Database' e aguradar o programa buscar todas as quotes do [quotes.toscrape](https://quotes.toscrape.com/).
+Campos:
 - Update Database
 - - Atualiza o banco de dados com as informações do do [quotes.toscrape](https://quotes.toscrape.com/).
 - Quote List Generator (mostra todas as quotes disponíveis no banco de dados)
@@ -50,6 +52,7 @@ Para rodar a aplicação pode ser utilizado o Python 3.11.5 e o "requirements.tx
 
 ## Logs e Documentação da API
 - Logs (mostra os ultimos 2000 logs de todos processos do site.)
+Campos:
 - - botão: Generate all log CSV (gera um csv com todos os logs do site)
 - Documentação Swagger (redireciona ao endereço da documentação gerada pelo Swagger da nossa API)
 - Documentação Redoc (redireciona ao endereço da documentação gerada pelo Redoc da nossa API)
