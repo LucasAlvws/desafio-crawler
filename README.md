@@ -10,7 +10,7 @@ Para rodar a aplicação pode ser utilizado o Python 3.11.5 e o "requirements.tx
 
 # Passo-a-Passo:
 
-# Preparo
+## Preparo
 - Após clonar o repositório abra o terminal do pc na pasta root do projeto.
 - No terminal escreva: 
 - - python -m venv ./venv
@@ -22,7 +22,7 @@ Para rodar a aplicação pode ser utilizado o Python 3.11.5 e o "requirements.tx
 - Crie o banco de dados local sqlite
 - - python manage.py migrate
 
-#Inicialização
+## Inicialização
 - Para iniciar o programa escreva no terminal:
 - - python.exe manage.py runserver
 - Abra o navegador no endereço: http://localhost:8000/
